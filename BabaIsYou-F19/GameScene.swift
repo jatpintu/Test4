@@ -20,12 +20,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         self.baba = self.childNode(withName: "baba") as! SKSpriteNode
+        self.enumerateChildNodes(withName: "flag") {
+                   (node, stop) in        }
 
         
     }
    
     func didBegin(_ contact: SKPhysicsContact) {
-        print("Something collided!")
+       let nodeA = contact.bodyA.node
+        let nodeB = contact.bodyB.node
+        
+        if (nodeA == nil || nodeB == nil) {
+            return
+        }
+        
+   
+        if (nodeA!.name == "baba" && nodeB!.name == "flag") {
+            if let scene = SKScene(fileNamed: "winScreen") {
+                print("code is working")
+                self.view?.presentScene(scene, transition: SKTransition.flipVertical(withDuration: 1.5))
+            }
+            
+            
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
