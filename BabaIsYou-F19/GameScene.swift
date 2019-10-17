@@ -11,10 +11,17 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var baba:SKSpriteNode!
+    let baba_Speed:CGFloat = 15
+
     
 
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
+        
+        self.baba = self.childNode(withName: "baba") as! SKSpriteNode
+
+        
     }
    
     func didBegin(_ contact: SKPhysicsContact) {
@@ -26,6 +33,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let mouseTouch = touches.first
+        if (mouseTouch == nil) {
+            return
+        }
+        let location = mouseTouch!.location(in: self)
+        let nodeTouched = atPoint(location).name
+      
+        if (nodeTouched == "up") {
+            self.baba.position.y = self.baba.position.y + baba_Speed
+        }
+        else if (nodeTouched == "down") {
+             self.baba.position.y = self.baba.position.y - baba_Speed
+        }
+        else if (nodeTouched == "left") {
+             self.baba.position.x = self.baba.position.x - baba_Speed
+        }
+        else if (nodeTouched == "right") {
+             self.baba.position.x = self.baba.position.x + baba_Speed
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
