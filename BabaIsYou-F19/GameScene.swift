@@ -18,12 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
-        
         self.baba = self.childNode(withName: "baba") as! SKSpriteNode
-        self.enumerateChildNodes(withName: "flag") {
-                   (node, stop) in
-            let flag = node as! SKSpriteNode      }
-
         
     }
    
@@ -40,9 +35,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
               let winScene = winScreen(size: self.size)
 
                 self.view?.presentScene(winScene, transition: SKTransition.flipVertical(withDuration: 1.5))
-//            }
-            
-            
         }
     }
     

@@ -22,9 +22,17 @@ required init?(coder aDecoder: NSCoder) {
 
 
 override func didMove(to view: SKView) {
+   
     let background = SKSpriteNode(imageNamed:"winScreen")
     background.position = CGPoint(x:size.width/2, y:size.height/2)
     addChild(background)
+    let message = SKLabelNode(text:"CONGRATS LEVEL COMPLETE!")
+       message.position = CGPoint(x:self.size.width/2, y:self.size.height/2)
+       message.fontColor = UIColor.magenta
+       message.fontSize = 50
+       message.fontName = "AvenirNext-Bold"
+    addChild(message)
+    
 }
 
 override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
