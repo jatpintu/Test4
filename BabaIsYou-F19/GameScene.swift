@@ -21,7 +21,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.baba = self.childNode(withName: "baba") as! SKSpriteNode
         self.enumerateChildNodes(withName: "flag") {
-                   (node, stop) in        }
+                   (node, stop) in
+            let flag = node as! SKSpriteNode      }
 
         
     }
@@ -36,10 +37,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
    
         if (nodeA!.name == "baba" && nodeB!.name == "flag") {
-            if let scene = SKScene(fileNamed: "winScreen") {
-                print("code is working")
-                self.view?.presentScene(scene, transition: SKTransition.flipVertical(withDuration: 1.5))
-            }
+              let winScene = winScreen(size: self.size)
+
+                self.view?.presentScene(winScene, transition: SKTransition.flipVertical(withDuration: 1.5))
+//            }
             
             
         }
